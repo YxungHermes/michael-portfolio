@@ -1,138 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Michael Andrade — Videographer & Creative</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Michael Andrade — Creative Direction & Visual Storytelling</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0c0c0c;
+      color: #fff;
+    }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f9f9f9;
-            color: #1f2937;
-        }
+    .section {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem;
+      text-align: center;
+    }
 
-        .hero-gradient {
-            background: linear-gradient(135deg, #e0e7ff 0%, #fdf2f8 100%);
-        }
+    .logo {
+      font-size: 3rem;
+      font-weight: bold;
+      letter-spacing: 0.1em;
+      color: white;
+    }
 
-        .project-card {
-            transition: all 0.3s ease;
-        }
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
 
-        .project-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-        }
-
-        .nav-link {
-            position: relative;
-        }
-
-        .nav-link:after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #6366f1;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover:after {
-            width: 100%;
-        }
-    </style>
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="bg-white shadow-sm fixed w-full z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="#" class="text-2xl font-bold text-indigo-600">Michael Andrade</a>
-                </div>
-                <div class="hidden md:flex md:space-x-6 items-center">
-                    <a href="#work" class="nav-link text-gray-700 hover:text-indigo-600">Portfolio</a>
-                    <a href="#crew" class="nav-link text-gray-700 hover:text-indigo-600">Crew Work</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-indigo-600">About</a>
-                    <a href="#contact" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
+  <!-- Hero Section -->
+  <section class="section bg-black">
+    <div class="reveal">
+      <div class="logo">MICHAEL ANDRADE</div>
+      <p class="mt-4 text-lg text-gray-400">Videographer & Director · Brooklyn, NYC</p>
+    </div>
+  </section>
 
-    <!-- Hero Section -->
-    <section class="hero-gradient pt-32 pb-20 text-center px-4 sm:px-6 lg:px-8">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">I capture stories through motion.</h1>
-            <p class="text-xl text-gray-700 mb-8">I'm Michael Andrade — a Brooklyn-based event videographer and filmmaker. I shoot weddings, music videos, and anything that brings life to screen. I also work on sets as part of larger crews, camera teams, and production houses.</p>
-            <div class="flex justify-center gap-4">
-                <a href="#work" class="bg-indigo-600 text-white px-6 py-3 rounded-md text-lg font-medium hover:bg-indigo-700">Watch My Work</a>
-                <a href="#contact" class="border border-gray-800 text-gray-900 px-6 py-3 rounded-md text-lg font-medium hover:bg-gray-900 hover:text-white">Hire Me</a>
-            </div>
-        </div>
-    </section>
+  <!-- Featured Visual -->
+  <section class="section bg-white text-black">
+    <div class="reveal max-w-3xl">
+      <h2 class="text-3xl font-semibold mb-4">Immersive Video for Bold Brands</h2>
+      <p class="text-gray-700">I create compelling video and visual stories for brands, events, and artists. Whether you need a lead shooter, BTS crew, or creative director — I've been in the field and behind the lens.</p>
+    </div>
+  </section>
 
-    <!-- Work Section -->
-    <section id="work" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">Selected Work</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Replace these with your actual work examples -->
-                <div class="project-card bg-gray-100 rounded-xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?auto=format&fit=crop&w=1470&q=80" alt="Wedding" class="w-full h-80 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Billy & Ari Wedding</h3>
-                        <p class="text-gray-600">Lead Videographer · September 2024 · Love, Violeta Rose</p>
-                    </div>
-                </div>
-                <div class="project-card bg-gray-100 rounded-xl overflow-hidden">
-                    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1470&q=80" alt="Music Video" class="w-full h-80 object-cover">
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900 mb-2">Dakota Blue – "Nonexistent"</h3>
-                        <p class="text-gray-600">BTS + Music Video Production · 2024 · Spacedog</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Work Samples (Placeholder Thumbnails) -->
+  <section class="section bg-black">
+    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl w-full">
+      <div class="bg-white h-64"></div>
+      <div class="bg-white h-64"></div>
+      <div class="bg-white h-64"></div>
+    </div>
+  </section>
 
-    <!-- Crew Experience Section -->
-    <section id="crew" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold text-center text-gray-900 mb-12">On-Set Experience</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="bg-white p-6 rounded-xl shadow">
-                    <i class="fas fa-video text-indigo-500 text-3xl mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">Camera Op</h3>
-                    <p class="text-gray-600">Commercials, music videos, and branded content with Sony FX6 / A7S3</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow">
-                    <i class="fas fa-user-friends text-indigo-500 text-3xl mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">AC / Crew</h3>
-                    <p class="text-gray-600">Assisted DP and camera teams on shoots across NYC and beyond</p>
-                </div>
-                <div class="bg-white p-6 rounded-xl shadow">
-                    <i class="fas fa-handshake text-indigo-500 text-3xl mb-4"></i>
-                    <h3 class="text-lg font-semibold mb-2">Collaborations</h3>
-                    <p class="text-gray-600">Worked with artists, brands, and creatives across weddings, live events, and set builds</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Contact CTA -->
+  <section class="section bg-white text-black">
+    <div class="reveal">
+      <h3 class="text-2xl font-semibold">Start a Project</h3>
+      <p class="text-gray-700 mt-2 mb-6">I'm available for freelance and full production bookings.</p>
+      <a href="mailto:your@email.com" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">Email Me</a>
+    </div>
+  </section>
 
-    <!-- Contact CTA -->
-    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-indigo-600 text-white">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6">Let's create something timeless</h2>
-            <p class="text-xl mb-10">Whether you're planning your wedding, launching a brand, or building a production crew — I'm ready to help tell your story.</p>
-            <a href="mailto:your@email.com" class="bg-white text-indigo-600 px-8 py-4 rounded-md text-lg font-bold hover:bg-gray-100">Email Me</a>
-        </div>
-    </section>
+  <script>
+    const revealElements = document.querySelectorAll('.reveal');
+    window.addEventListener('scroll', () => {
+      for (let el of revealElements) {
+        const windowHeight = window.innerHeight;
+        const revealTop = el.getBoundingClientRect().top;
+        if (revealTop < windowHeight - 100) {
+          el.classList.add('active');
+        }
+      }
+    });
+  </script>
 </body>
 </html>
