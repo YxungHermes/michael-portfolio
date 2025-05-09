@@ -29,3 +29,98 @@ nav {
   gap: 25px;
   padding: 20px 0;
 }
+
+/* New Hero Section Styles */
+.hero-section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: #0c0c0c; /* Consistent dark background */
+  padding: 2rem;
+  color: #fff;
+}
+
+.hero-content {
+  /* Add any specific styling for the content block if needed */
+}
+
+.hero-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.hero-subtitle {
+  font-size: 1.25rem;
+  color: #a0aec0; /* Tailwind gray-500 equivalent */
+  margin-bottom: 2.5rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+/* Creative Button Styles */
+.btn {
+  padding: 0.85rem 1.75rem;
+  border-radius: 0.375rem; /* Tailwind rounded-md */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border: 2px solid #fff; /* Default white border */
+  background-color: transparent;
+  color: #fff;
+  min-width: 180px; /* Ensure buttons have a decent minimum width */
+}
+
+.btn-primary {
+  background-color: #fff;
+  color: #0c0c0c;
+  border-color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: transparent;
+  color: #fff;
+  border-color: #fff;
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+.btn-secondary {
+  /* Already transparent with white border/text from .btn */
+}
+
+.btn-secondary:hover {
+  background-color: #fff;
+  color: #0c0c0c;
+  border-color: #fff;
+  transform: translateY(-2px); /* Subtle lift effect */
+}
+
+/* Responsive adjustments for hero text */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: 2.5rem;
+  }
+  .hero-subtitle {
+    font-size: 1.1rem;
+  }
+  .hero-buttons {
+    flex-direction: column;
+    gap: 0.75rem; /* Smaller gap for stacked buttons */
+  }
+  .btn {
+    width: 100%; /* Make buttons full width in column layout */
+    max-width: 300px; /* Max width for stacked buttons */
+  }
+}

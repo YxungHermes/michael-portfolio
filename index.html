@@ -5,89 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Michael Andrade — Creative Direction & Visual Storytelling</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    html, body {
-      padding: 0;
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background-color: #0c0c0c;
-      color: #fff;
-    }
-
-    .section {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .logo {
-      font-size: 3rem;
-      font-weight: bold;
-      letter-spacing: 0.1em;
-      color: white;
-    }
-
-    .reveal {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 1s ease;
-    }
-
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
+  <!-- Removed inline <style> block -->
 </head>
 <body>
-  <!-- Hero Section -->
-  <section class="section bg-black">
-    <div class="reveal">
-      <div class="logo">MICHAEL ANDRADE</div>
-      <p class="mt-4 text-lg text-gray-400">Videographer & Director · Brooklyn, NYC</p>
-    </div>
-  </section>
-
-  <!-- Featured Visual -->
-  <section class="section bg-white text-black">
-    <div class="reveal max-w-3xl">
-      <h2 class="text-3xl font-semibold mb-4">Immersive Video for Bold Brands</h2>
-      <p class="text-gray-700">I create compelling video and visual stories for brands, events, and artists. Whether you need a lead shooter, BTS crew, or creative director — I've been in the field and behind the lens.</p>
-    </div>
-  </section>
-
-  <!-- Work Samples (Placeholder Thumbnails) -->
-  <section class="section bg-black">
-    <div class="reveal grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl w-full">
-      <div class="bg-white h-64"></div>
-      <div class="bg-white h-64"></div>
-      <div class="bg-white h-64"></div>
-    </div>
-  </section>
-
-  <!-- Contact CTA -->
-  <section class="section bg-white text-black">
-    <div class="reveal">
-      <h3 class="text-2xl font-semibold">Start a Project</h3>
-      <p class="text-gray-700 mt-2 mb-6">I'm available for freelance and full production bookings.</p>
-      <a href="mailto:your@email.com" class="bg-black text-white px-6 py-3 rounded hover:bg-gray-800 transition">Email Me</a>
-    </div>
-  </section>
-
-  <script>
-    const revealElements = document.querySelectorAll('.reveal');
-    window.addEventListener('scroll', () => {
-      for (let el of revealElements) {
-        const windowHeight = window.innerHeight;
-        const revealTop = el.getBoundingClientRect().top;
-        if (revealTop < windowHeight - 100) {
-          el.classList.add('active');
-        }
-      }
-    });
-  </script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+  <!-- Removed all static <section> elements and the scroll reveal <script> -->
 </body>
 </html>
