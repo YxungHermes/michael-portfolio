@@ -84,22 +84,37 @@ main {
 }
 
 
-/* Project Grid Styles (HomePage) */
+/* Project Grid Styles (Masonry Layout) */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Adjusted minmax */
-  gap: 15px; /* Reduced gap */
-  padding: 20px; /* Overall padding for the grid section */
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-auto-rows: 10px; /* For masonry layout */
+  gap: 20px;
+  padding: 20px;
   max-width: 1800px;
-  margin: 0 auto; /* Center the grid */
+  margin: 0 auto;
 }
 
 .project-grid-item {
+  grid-row-end: span 30; /* Default height - will be adjusted by JS */
   background-color: #181818;
   overflow: hidden;
   position: relative;
-  aspect-ratio: 16/9; /* Common video/image aspect ratio */
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Add these new styles */
+.project-grid-item.tall {
+  grid-row-end: span 45; /* Taller items */
+}
+
+.project-grid-item.short {
+  grid-row-end: span 25; /* Shorter items */
+}
+
+.project-grid-item:hover {
+  transform: translateY(-5px);
 }
 
 .project-grid-item img,
@@ -107,12 +122,12 @@ main {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother transition */
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .project-grid-item:hover img,
 .project-grid-item:hover video {
-  transform: scale(1.03); /* Slightly less zoom */
+  transform: scale(1.03);
 }
 
 .project-item-overlay {
@@ -120,11 +135,11 @@ main {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
-  padding: 15px; /* Adjusted padding */
+  background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.4) 60%, transparent 100%);
+  padding: 20px;
   color: #fff;
   opacity: 0;
-  transform: translateY(10px); /* Start slightly lower */
+  transform: translateY(10px);
   transition: opacity 0.4s ease, transform 0.4s ease;
   box-sizing: border-box;
 }
@@ -135,10 +150,95 @@ main {
 }
 
 .project-item-title {
-  font-size: 1.1rem; /* Adjusted size */
-  font-weight: 600; /* Bolder */
+  font-size: 1.1rem;
+  font-weight: 500;
   margin: 0;
   line-height: 1.3;
+}
+
+.project-item-category {
+  font-size: 0.85rem;
+  color: #ccc;
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Single Project Page Styles */
+.project-detail {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.project-header {
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.project-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.project-category {
+  font-size: 1rem;
+  color: #aaa;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.project-description {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+  color: #bbb;
+}
+
+.project-media {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.project-media img,
+.project-media video {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.project-media-full {
+  grid-column: 1 / -1;
+}
+
+.project-navigation {
+  display: flex;
+  justify-content: space-between;
+  padding: 30px 0;
+  margin-top: 60px;
+  border-top: 1px solid #333;
+}
+
+.project-navigation a {
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.project-navigation .prev-project::before {
+  content: '←';
+  margin-right: 10px;
+}
+
+.project-navigation .next-project::after {
+  content: '→';
+  margin-left: 10px;
 }
 
 /* Footer Styles */
@@ -230,6 +330,50 @@ main {
 .about-page-container p {
   margin-bottom: 18px;
   font-size: 0.95rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .project-media {
+    grid-template-columns: 1fr;
+  }
+  
+  .project-title {
+    font-size: 2rem;
+  }
+  
+  .navbar {
+    padding: 0 20px;
+  }
+  
+  .nav-logo {
+    left: 20px;
+    font-size: 1.2rem;
+  }
+  
+  .nav-links {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .project-grid-item {
+    grid-row-end: span 25; /* Smaller default height on mobile */
+  }
+  
+  .project-grid-item.tall {
+    grid-row-end: span 35; /* Adjusted taller items */
+  }
+  
+  .project-item-title {
+    font-size: 1rem;
+  }
 }
 
 /* Utility for screen reader only text */

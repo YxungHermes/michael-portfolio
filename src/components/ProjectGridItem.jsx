@@ -1,34 +1,58 @@
 import React, { useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-const ProjectGridItem = ({ title, videoSrc, thumbnailSrc }) => {
+const ProjectGridItem = ({ project }) => {
   const videoRef = useRef(null);
+  const { id, title, category, videoSrc, thumbnailSrc, height, slug } = project;
   const hasVideo = videoSrc && videoSrc.trim() !== "";
   const hasThumbnail = thumbnailSrc && thumbnailSrc.trim() !== "";
 
-  // Attempt to play video if it exists and is visible (basic implementation)
+  // Attempt to play video if it exists and is visible
   useEffect(() => {
     if (hasVideo && videoRef.current) {
-      videoRef.current.play().catch(error => {
-        // Autoplay was prevented, usually requires user interaction or muted.
-        // console.warn("Video autoplay prevented for:", title, error);
-        // Ensure video is muted for better autoplay chances
-        if (videoRef.current) videoRef.current.muted = true;
-        videoRef.current.play().catch(e => console.warn("Muted autoplay also failed for:", title, e));
-      });
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            videoRef.current.play().catch(error => {
+              // Autoplay was prevented, usually requires user interaction or muted
+              if (videoRef.current) videoRef.current.muted = true;
+              videoRef.current.play().catch(e => console.warn("Muted autoplay also failed:", e));
+            });
+          } else {
+            if (videoRef.current && !videoRef.current.paused) {
+              videoRef.current.pause();
+            }
+          }
+        });
+      }, options);
+
+      observer.observe(videoRef.current);
+
+      return () => {
+        if (videoRef.current) observer.unobserve(videoRef.current);
+      };
     }
-  }, [hasVideo, title]);
+  }, [hasVideo]);
+
+  const heightClass = height ? `project-grid-item ${height}` : "project-grid-item";
 
   return (
-    <div className="project-grid-item">
+    <Link to={`/project/${slug}`} className={heightClass}>
       {hasVideo ? (
         <video
           ref={videoRef}
           src={videoSrc}
-          muted  // Muted is often required for autoplay
+          muted
           loop
-          playsInline // Important for iOS
-          preload="metadata" // Helps with loading the first frame quickly
-          poster={thumbnailSrc} // Show thumbnail while video loads or if it fails
+          playsInline
+          preload="metadata"
+          poster={thumbnailSrc}
         >
           Your browser does not support the video tag.
         </video>
@@ -41,8 +65,9 @@ const ProjectGridItem = ({ title, videoSrc, thumbnailSrc }) => {
       )}
       <div className="project-item-overlay">
         <h3 className="project-item-title">{title}</h3>
+        {category && <p className="project-item-category">{category}</p>}
       </div>
-    </div>
+    </Link>
   );
 };
 
