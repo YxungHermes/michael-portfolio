@@ -1,76 +1,82 @@
-import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
-import { getProjectBySlug, getAdjacentProjects } from '../data/projects';
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { projects } from './HomePage'; // Import projects data
 
 const ProjectDetail = () => {
   const { slug } = useParams();
-  const navigate = useNavigate();
-  const project = getProjectBySlug(slug);
-  
-  // Redirect to home if project not found
+  const [project, setProject] = useState(null);
+  const [nextProject, setNextProject] = useState(null);
+  const [prevProject, setPrevProject] = useState(null);
+
   useEffect(() => {
-    if (!project) {
-      navigate('/');
+    // Find the current project
+    const projectIndex = projects.findIndex(p => p.slug === slug);
+    
+    if (projectIndex !== -1) {
+      setProject(projects[projectIndex]);
+      
+      // Find next and previous projects for navigation
+      const nextIndex = projectIndex < projects.length - 1 ? projectIndex + 1 : 0;
+      const prevIndex = projectIndex > 0 ? projectIndex - 1 : projects.length - 1;
+      
+      setNextProject(projects[nextIndex]);
+      setPrevProject(projects[prevIndex]);
     }
-  }, [project, navigate]);
-  
-  // If project is still loading or not found
+    
+    // Scroll to top when project changes
+    window.scrollTo(0, 0);
+  }, [slug]);
+
   if (!project) {
-    return <div className="project-detail">Loading...</div>;
+    return <div className="project-detail">Project not found</div>;
   }
-  
-  const { title, category, description, media } = project;
-  const { prevProject, nextProject } = getAdjacentProjects(project.id);
-  
+
   return (
     <div className="project-detail">
-      <div className="project-header">
-        <h1 className="project-title">{title}</h1>
-        {category && <p className="project-category">{category}</p>}
+      <div className="project-detail-header">
+        <h1 className="project-detail-title">{project.title}</h1>
+        <div className="project-detail-meta">
+          {project.category} | {project.year}
+        </div>
+        <div className="project-detail-description">
+          <p>{project.description}</p>
+        </div>
       </div>
-      
-      {description && (
-        <div className="project-description">
-          <p>{description}</p>
-        </div>
-      )}
-      
-      {media && media.length > 0 && (
-        <div className="project-media">
-          {media.map((item, index) => {
-            const mediaClass = item.isFullWidth ? 'project-media-full' : '';
-            
-            return item.type === 'video' ? (
-              <div key={index} className={mediaClass}>
-                <video
-                  src={item.src}
-                  controls
-                  muted
-                  playsInline
-                  style={{ width: '100%', height: 'auto', aspectRatio: item.isFullWidth ? '16/9' : '0.8' }}
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            ) : (
-              <div key={index} className={mediaClass}>
-                <img
-                  src={item.src}
-                  alt={`${title} - media ${index + 1}`}
-                  style={{ width: '100%', height: 'auto' }}
-                />
-              </div>
-            );
-          })}
-        </div>
-      )}
-      
+
+      <div className="project-detail-media">
+        {project.videoSrc ? (
+          <div className="project-detail-video">
+            <video
+              controls
+              src={project.videoSrc}
+              poster={project.thumbnailSrc}
+            >
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        ) : (
+          <div className="project-detail-image">
+            <img src={project.thumbnailSrc} alt={project.title} />
+          </div>
+        )}
+        
+        {/* Additional images could be added here */}
+        {project.additionalImages && project.additionalImages.map((img, index) => (
+          <div className="project-detail-image" key={index}>
+            <img src={img} alt={`${project.title} - Image ${index + 1}`} />
+          </div>
+        ))}
+      </div>
+
       <div className="project-navigation">
-        <Link to={`/project/${prevProject.slug}`} className="prev-project">
-          Previous Project
+        <Link to={`/project/${prevProject.slug}`} className="project-nav-link">
+          ← Previous Project
         </Link>
-        <Link to={`/project/${nextProject.slug}`} className="next-project">
-          Next Project
+        <Link to="/" className="project-nav-link">
+          Back to All Projects
+        </Link>
+        <Link to={`/project/${nextProject.slug}`} className="project-nav-link">
+          Next Project →
         </Link>
       </div>
     </div>
