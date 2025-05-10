@@ -87,7 +87,7 @@ main {
 /* Project Grid Styles (Masonry Layout) */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   grid-auto-rows: 10px; /* For masonry layout */
   gap: 20px;
   padding: 20px;
@@ -102,15 +102,18 @@ main {
   position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
+  aspect-ratio: 0.8; /* Default aspect ratio for vertical orientation */
 }
 
 /* Add these new styles */
 .project-grid-item.tall {
   grid-row-end: span 45; /* Taller items */
+  aspect-ratio: 0.7; /* More vertical aspect ratio */
 }
 
 .project-grid-item.short {
   grid-row-end: span 25; /* Shorter items */
+  aspect-ratio: 1; /* More square aspect ratio */
 }
 
 .project-grid-item:hover {
@@ -335,7 +338,7 @@ main {
 /* Responsive Styles */
 @media (max-width: 768px) {
   .project-grid {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 15px;
     padding: 15px;
   }
@@ -363,12 +366,18 @@ main {
 }
 
 @media (max-width: 480px) {
+  .project-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
+  
   .project-grid-item {
     grid-row-end: span 25; /* Smaller default height on mobile */
+    aspect-ratio: 0.8; /* Maintain vertical aspect ratio */
   }
   
   .project-grid-item.tall {
     grid-row-end: span 35; /* Adjusted taller items */
+    aspect-ratio: 0.7;
   }
   
   .project-item-title {

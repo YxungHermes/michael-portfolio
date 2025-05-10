@@ -2,63 +2,63 @@
 const projects = [
   {
     id: 1,
-    title: 'Wedding Highlight – Ari & Billy',
+    title: 'Wedding Highlight',
     category: 'Wedding',
-    description: 'A cinematic wedding highlight film capturing Ari and Billy\'s special day at the Four Seasons Resort.',
+    description: 'A cinematic wedding highlight film capturing the special day at a beautiful venue.',
     thumbnailSrc: 'https://source.unsplash.com/random/600x800?wedding',
-    videoSrc: '/videos/sample1.mp4',
+    videoSrc: '/videos/Annie 1080p.mov',
     media: [
-      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?wedding', isFullWidth: true },
+      { type: 'video', src: '/videos/Annie 1080p.mov', isFullWidth: true },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?bride' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?groom' },
-      { type: 'video', src: '/videos/sample1.mp4', isFullWidth: true }
     ],
     height: 'tall',
-    slug: 'ari-billy-wedding'
+    slug: 'wedding-highlight'
   },
   {
     id: 2,
-    title: 'BTS – Dakota Blue "Nonexistent"',
-    category: 'Music Video',
-    description: 'Behind the scenes footage from the making of Dakota Blue\'s music video for their hit single "Nonexistent".',
-    thumbnailSrc: 'https://source.unsplash.com/random/800x600?music',
-    videoSrc: '/videos/sample2.mp4',
+    title: 'DLE Hybrid Event',
+    category: 'Event',
+    description: 'Coverage of the DLE Hybrid Event at Gotham, showcasing key moments and highlights.',
+    thumbnailSrc: 'https://source.unsplash.com/random/800x600?event',
+    videoSrc: '/videos/DLE Hybrid Event at Gotham.mov',
     media: [
-      { type: 'video', src: '/videos/sample2.mp4', isFullWidth: true },
-      { type: 'image', src: 'https://source.unsplash.com/random/600x800?singer' },
-      { type: 'image', src: 'https://source.unsplash.com/random/600x800?band' },
-      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?concert', isFullWidth: true }
+      { type: 'video', src: '/videos/DLE Hybrid Event at Gotham.mov', isFullWidth: true },
+      { type: 'image', src: 'https://source.unsplash.com/random/600x800?event' },
+      { type: 'image', src: 'https://source.unsplash.com/random/600x800?conference' },
     ],
     height: 'normal',
-    slug: 'dakota-blue-nonexistent'
+    slug: 'dle-hybrid-event'
   },
   {
     id: 3,
-    title: 'Corporate Event Recap',
-    category: 'Corporate',
-    description: 'A highlight reel from the annual tech conference featuring keynote speakers and product launches.',
-    thumbnailSrc: 'https://source.unsplash.com/random/600x800?corporate',
+    title: 'FIWWA$ - Connection',
+    category: 'Music Video',
+    description: 'A short music video clip for FIWWA$ showcasing their track "Connection".',
+    thumbnailSrc: 'https://source.unsplash.com/random/600x800?music',
+    videoSrc: '/videos/FIWWA$ - Connection [21 Sec].mov',
     media: [
-      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?conference', isFullWidth: true },
-      { type: 'image', src: 'https://source.unsplash.com/random/600x800?business' },
-      { type: 'image', src: 'https://source.unsplash.com/random/600x800?meeting' }
+      { type: 'video', src: '/videos/FIWWA$ - Connection [21 Sec].mov', isFullWidth: true },
+      { type: 'image', src: 'https://source.unsplash.com/random/600x800?musician' },
+      { type: 'image', src: 'https://source.unsplash.com/random/600x800?concert' }
     ],
-    height: 'short',
-    slug: 'corporate-event-recap'
+    height: 'tall',
+    slug: 'fiwwa-connection'
   },
   {
     id: 4,
-    title: 'Music Video – "City Lights"',
-    category: 'Music Video',
-    description: 'Official music video for indie band Neon Sunset\'s single "City Lights" shot on location in downtown Los Angeles.',
-    thumbnailSrc: 'https://source.unsplash.com/random/800x600?city',
+    title: 'Coffee Shop Commercial',
+    category: 'Commercial',
+    description: 'A short commercial for a coffee shop, highlighting their aesthetic and products.',
+    thumbnailSrc: 'https://source.unsplash.com/random/800x600?coffee',
+    videoSrc: '/videos/Video 2 - Coffee outfit 6 seconds [Revison 3.51].mov',
     media: [
-      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?night', isFullWidth: true },
-      { type: 'image', src: 'https://source.unsplash.com/random/600x800?lights' },
-      { type: 'image', src: 'https://source.unsplash.com/random/600x800?musician' }
+      { type: 'video', src: '/videos/Video 2 - Coffee outfit 6 seconds [Revison 3.51].mov', isFullWidth: true },
+      { type: 'image', src: 'https://source.unsplash.com/random/600x800?cafe' },
+      { type: 'image', src: 'https://source.unsplash.com/random/600x800?barista' }
     ],
-    height: 'normal',
-    slug: 'city-lights-music-video'
+    height: 'short',
+    slug: 'coffee-commercial'
   },
   {
     id: 5,

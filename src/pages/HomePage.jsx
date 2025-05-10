@@ -5,35 +5,49 @@ import projects from '../data/projects';
 const HomePage = () => {
   const gridRef = useRef(null);
 
-  // Optional: Add resizing functionality for true masonry layout
+  // Enhanced masonry layout functionality
   useEffect(() => {
-    const handleResize = () => {
+    const adjustGridItems = () => {
       if (gridRef.current) {
         const grid = gridRef.current;
         const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
         const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
 
-        // Reset
+        // Reset existing spans
         const items = grid.getElementsByClassName('project-grid-item');
         for (let i = 0; i < items.length; i++) {
-          items[i].style.gridRowEnd = "";
-        }
-
-        // Get updated heights
-        for (let i = 0; i < items.length; i++) {
-          const item = items[i];
-          const rowSpan = Math.ceil((item.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-          item.style.gridRowEnd = `span ${rowSpan}`;
+          // Get the predefined height class
+          const heightClass = items[i].classList.contains('tall') ? 'tall' :
+                             items[i].classList.contains('short') ? 'short' : '';
+          
+          // Calculate appropriate span based on content and predefined class
+          const contentHeight = items[i].getBoundingClientRect().height;
+          const rowSpan = Math.ceil((contentHeight + rowGap) / (rowHeight + rowGap));
+          
+          // Apply calculated span, respecting the predefined height class
+          if (heightClass === 'tall') {
+            items[i].style.gridRowEnd = `span ${Math.max(rowSpan, 45)}`;
+          } else if (heightClass === 'short') {
+            items[i].style.gridRowEnd = `span ${Math.max(rowSpan, 25)}`;
+          } else {
+            items[i].style.gridRowEnd = `span ${Math.max(rowSpan, 30)}`;
+          }
         }
       }
     };
 
-    // Initial calculation and on window resize
-    handleResize();
-    window.addEventListener('resize', handleResize);
+    // Run when component mounts and on window resize
+    adjustGridItems();
+    window.addEventListener('resize', adjustGridItems);
+    
+    // Run again after a short delay to handle image/video loading
+    const timeoutId = setTimeout(adjustGridItems, 500);
     
     // Cleanup
-    return () => window.removeEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', adjustGridItems);
+      clearTimeout(timeoutId);
+    };
   }, []);
 
   return (

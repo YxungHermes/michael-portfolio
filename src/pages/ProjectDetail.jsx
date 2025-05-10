@@ -47,7 +47,7 @@ const ProjectDetail = () => {
                   controls
                   muted
                   playsInline
-                  style={{ width: '100%', height: 'auto' }}
+                  style={{ width: '100%', height: 'auto', aspectRatio: item.isFullWidth ? '16/9' : '0.8' }}
                 >
                   Your browser does not support the video tag.
                 </video>
