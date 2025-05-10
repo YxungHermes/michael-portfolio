@@ -102,7 +102,11 @@ main {
   position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
-  aspect-ratio: 0.7; /* Modified for consistent vertical orientation */
+  aspect-ratio: 0.7; /* Vertical orientation */
+  height: auto;
+  width: 100%;
+  /* Add this to force aspect ratio consistently across browsers */
+  display: block;
 }
 
 /* Update aspect ratios for all item variations */

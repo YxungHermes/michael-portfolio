@@ -44,28 +44,30 @@ const ProjectGridItem = ({ project }) => {
 
   return (
     <Link to={`/project/${slug}`} className={heightClass}>
-      {hasVideo ? (
-        <video
-          ref={videoRef}
-          src={videoSrc}
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          poster={thumbnailSrc}
-        >
-          Your browser does not support the video tag.
-        </video>
-      ) : hasThumbnail ? (
-        <img src={thumbnailSrc} alt={title || 'Project thumbnail'} />
-      ) : (
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', backgroundColor: '#2a2a2a', color: '#777' }}>
-          <span>Preview N/A</span>
+      <div className="content-wrapper" style={{ width: '100%', height: '100%' }}>
+        {hasVideo ? (
+          <video
+            ref={videoRef}
+            src={videoSrc}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={thumbnailSrc}
+          >
+            Your browser does not support the video tag.
+          </video>
+        ) : hasThumbnail ? (
+          <img src={thumbnailSrc} alt={title || 'Project thumbnail'} />
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', backgroundColor: '#2a2a2a', color: '#777' }}>
+            <span>Preview N/A</span>
+          </div>
+        )}
+        <div className="project-item-overlay">
+          <h3 className="project-item-title">{title}</h3>
+          {category && <p className="project-item-category">{category}</p>}
         </div>
-      )}
-      <div className="project-item-overlay">
-        <h3 className="project-item-title">{title}</h3>
-        {category && <p className="project-item-category">{category}</p>}
       </div>
     </Link>
   );
