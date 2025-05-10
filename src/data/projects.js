@@ -8,7 +8,7 @@ const projects = [
     thumbnailSrc: 'https://source.unsplash.com/random/600x800?wedding',
     videoSrc: '/videos/Annie 1080p.mov',
     media: [
-      { type: 'video', src: '/videos/Annie 1080p.mov', isFullWidth: true },
+      { type: 'video', src: '/videos/Annie 1080p.mov', isFullWidth: false }, /* Changed to false for vertical orientation */
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?bride' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?groom' },
     ],
@@ -23,7 +23,7 @@ const projects = [
     thumbnailSrc: 'https://source.unsplash.com/random/800x600?event',
     videoSrc: '/videos/DLE Hybrid Event at Gotham.mov',
     media: [
-      { type: 'video', src: '/videos/DLE Hybrid Event at Gotham.mov', isFullWidth: true },
+      { type: 'video', src: '/videos/DLE Hybrid Event at Gotham.mov', isFullWidth: false }, /* Changed to false for vertical orientation */
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?event' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?conference' },
     ],
@@ -38,7 +38,7 @@ const projects = [
     thumbnailSrc: 'https://source.unsplash.com/random/600x800?music',
     videoSrc: '/videos/FIWWA$ - Connection [21 Sec].mov',
     media: [
-      { type: 'video', src: '/videos/FIWWA$ - Connection [21 Sec].mov', isFullWidth: true },
+      { type: 'video', src: '/videos/FIWWA$ - Connection [21 Sec].mov', isFullWidth: false }, /* Changed to false for vertical orientation */
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?musician' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?concert' }
     ],
@@ -53,7 +53,7 @@ const projects = [
     thumbnailSrc: 'https://source.unsplash.com/random/800x600?coffee',
     videoSrc: '/videos/Video 2 - Coffee outfit 6 seconds [Revison 3.51].mov',
     media: [
-      { type: 'video', src: '/videos/Video 2 - Coffee outfit 6 seconds [Revison 3.51].mov', isFullWidth: true },
+      { type: 'video', src: '/videos/Video 2 - Coffee outfit 6 seconds [Revison 3.51].mov', isFullWidth: false }, /* Changed to false for vertical orientation */
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?cafe' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?barista' }
     ],
@@ -67,7 +67,7 @@ const projects = [
     description: 'An experimental short film following a traveler on a journey of self-discovery through stunning landscapes.',
     thumbnailSrc: 'https://source.unsplash.com/random/600x900?film',
     media: [
-      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?landscape', isFullWidth: true },
+      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?landscape', isFullWidth: false }, /* Changed to false for vertical orientation */
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?portrait' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?travel' }
     ],
@@ -81,7 +81,7 @@ const projects = [
     description: 'A sleek product commercial showcasing the features and capabilities of the new Nova X Drone.',
     thumbnailSrc: 'https://source.unsplash.com/random/800x600?tech',
     media: [
-      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?drone', isFullWidth: true },
+      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?drone', isFullWidth: false }, /* Changed to false for vertical orientation */
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?technology' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?camera' }
     ],
@@ -95,7 +95,7 @@ const projects = [
     description: 'A documentary series exploring lesser-known destinations and the stories behind them.',
     thumbnailSrc: 'https://source.unsplash.com/random/600x800?travel',
     media: [
-      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?adventure', isFullWidth: true },
+      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?adventure', isFullWidth: false }, /* Changed to false for vertical orientation */
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?nature' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?explore' }
     ],
@@ -109,7 +109,7 @@ const projects = [
     description: 'A vibrant fashion film showcasing the latest spring collection for a boutique clothing brand.',
     thumbnailSrc: 'https://source.unsplash.com/random/800x600?fashion',
     media: [
-      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?model', isFullWidth: true },
+      { type: 'image', src: 'https://source.unsplash.com/random/1200x800?model', isFullWidth: false }, /* Changed to false for vertical orientation */
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?style' },
       { type: 'image', src: 'https://source.unsplash.com/random/600x800?clothing' }
     ],

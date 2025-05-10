@@ -102,18 +102,18 @@ main {
   position: relative;
   cursor: pointer;
   transition: transform 0.3s ease;
-  aspect-ratio: 0.8; /* Default aspect ratio for vertical orientation */
+  aspect-ratio: 0.7; /* Modified for consistent vertical orientation */
 }
 
-/* Add these new styles */
+/* Update aspect ratios for all item variations */
 .project-grid-item.tall {
   grid-row-end: span 45; /* Taller items */
-  aspect-ratio: 0.7; /* More vertical aspect ratio */
+  aspect-ratio: 0.6; /* More vertical aspect ratio */
 }
 
 .project-grid-item.short {
   grid-row-end: span 25; /* Shorter items */
-  aspect-ratio: 1; /* More square aspect ratio */
+  aspect-ratio: 0.8; /* Still maintaining vertical aspect ratio */
 }
 
 .project-grid-item:hover {
@@ -169,7 +169,7 @@ main {
 
 /* Single Project Page Styles */
 .project-detail {
-  max-width: 1400px;
+  max-width: 1200px; /* Slightly reduced from 1400px */
   margin: 0 auto;
   padding: 40px 20px;
 }
@@ -202,8 +202,8 @@ main {
 
 .project-media {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Reduced width for more vertical feel */
+  gap: 25px; /* Slightly increased gap */
   margin-bottom: 40px;
 }
 
@@ -212,10 +212,21 @@ main {
   width: 100%;
   height: auto;
   object-fit: cover;
+  aspect-ratio: 0.7; /* Consistent vertical aspect ratio for all media */
 }
 
+/* Full-width items should still maintain a vertical aspect in the center */
 .project-media-full {
   grid-column: 1 / -1;
+  max-width: 600px; /* Limit width to maintain vertical appearance */
+  margin: 0 auto;
+}
+
+.project-media-full img,
+.project-media-full video {
+  aspect-ratio: 0.7; /* Consistent vertical aspect ratio */
+  margin: 0 auto;
+  display: block;
 }
 
 .project-navigation {
@@ -345,6 +356,8 @@ main {
   
   .project-media {
     grid-template-columns: 1fr;
+    max-width: 400px; /* Center column of vertical content on mobile */
+    margin: 0 auto 40px;
   }
   
   .project-title {
@@ -372,12 +385,12 @@ main {
   
   .project-grid-item {
     grid-row-end: span 25; /* Smaller default height on mobile */
-    aspect-ratio: 0.8; /* Maintain vertical aspect ratio */
+    aspect-ratio: 0.7; /* Maintain vertical aspect ratio */
   }
   
   .project-grid-item.tall {
     grid-row-end: span 35; /* Adjusted taller items */
-    aspect-ratio: 0.7;
+    aspect-ratio: 0.6;
   }
   
   .project-item-title {
