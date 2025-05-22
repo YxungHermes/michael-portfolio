@@ -1,82 +1,124 @@
-import { useState } from "react";
-import Hero from '../components/Hero'; // Import Hero component
-import Footer from '../components/Footer'; // Import Footer component
+import React, { useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import projects from '../data/projects';
 
-export default function HomePage() {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+const HomePage = () => {
+  const heroRef = useRef(null);
+  const projectsRef = useRef(null);
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  useEffect(() => {
+    // Parallax effect for hero section
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      if (heroRef.current) {
+        heroRef.current.style.transform = `translateY(${scrollY * 0.5}px)`;
+      }
+    };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setSubmitted(true);
+    // Intersection Observer for scroll animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Observe all animatable elements
+    const animatableElements = document.querySelectorAll('.animate-on-scroll');
+    animatableElements.forEach(el => observer.observe(el));
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      animatableElements.forEach(el => observer.unobserve(el));
+    };
+  }, []);
+
+  const scrollToProjects = () => {
+    projectsRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <div className="font-sans"> {/* Removed min-h-screen, bg-black, text-white, p-4 from here */}
-      <Hero /> {/* Add Hero component here, replacing the old header */}
+    <>
+      {/* Hero Section */}
+      <section className="hero-section" ref={heroRef}>
+        <div className="hero-content">
+          <h1 className="hero-title">
+            <span className="word">Creative</span>{' '}
+            <span className="word">Vision</span>{' '}
+            <span className="word">Realized</span>
+          </h1>
+          <p className="hero-subtitle">
+            Transforming ideas into compelling visual narratives
+          </p>
+          <button onClick={scrollToProjects} className="hero-cta">
+            View Projects
+          </button>
+        </div>
+        <div className="scroll-indicator" onClick={scrollToProjects}>
+          <span className="sr-only">Scroll down</span>
+        </div>
+      </section>
 
-      {/* Wrapper for content below the hero, ensuring consistent styling and padding */}
-      <div className="bg-black text-white p-4">
-        {/* Add id="work-samples" for scrolling, and some vertical padding (py-12) */}
-        <section id="work-samples" className="grid gap-6 md:grid-cols-2 xl:grid-cols-3 px-4 py-12">
-          <div className="bg-gray-900 rounded-lg overflow-hidden shadow-md">
-            <video controls className="w-full">
-              <source src="/videos/sample1.mp4" type="video/mp4" />
-            </video>
-            <div className="p-4">
-              <h3 className="text-xl font-semibold">Wedding Highlight – Ari & Billy</h3>
-            </div>
-          </div>
-          <div className="bg-gray-900 rounded-lg overflow-hidden shadow-md">
-            <video controls className="w-full">
-              <source src="/videos/sample2.mp4" type="video/mp4" />
-            </video>
-            <div className="p-4">
-              <h3 className="text-xl font-semibold">BTS – Dakota Blue "Nonexistent"</h3>
-            </div>
-          </div>
-          {/* You can add a third item here if your grid is xl:grid-cols-3 */}
-          {/* Example:
-          <div className="bg-gray-900 rounded-lg overflow-hidden shadow-md">
-            <img src="/path/to/thumbnail3.jpg" alt="Project 3" className="w-full h-48 object-cover"/>
-            <div className="p-4">
-              <h3 className="text-xl font-semibold">Project Title 3</h3>
-            </div>
-          </div>
-          */}
-        </section>
+      {/* Projects Section */}
+      <section className="projects-section" ref={projectsRef}>
+        <div className="section-header animate-on-scroll">
+          <h2 className="section-title">Selected Work</h2>
+          <p className="section-subtitle">
+            A curated collection of projects that showcase creativity, innovation, and attention to detail
+          </p>
+        </div>
 
-        {/* Add id="contact-form" for scrolling, and some vertical padding (py-8) */}
-        <section id="contact-form" className="mt-12 max-w-xl mx-auto py-8">
-          <h2 className="text-2xl font-bold mb-4 text-center">Book Me for Your Next Project</h2>
-          {submitted ? (
-            <p className="text-green-400 text-center">Thank you! I'll be in touch soon.</p>
-          ) : (
-            <form onSubmit={handleSubmit} className="grid gap-4">
-              <input name="name" placeholder="Your Name" value={form.name} onChange={handleChange}
-                className="bg-gray-800 p-3 rounded text-white" required />
-              <input type="email" name="email" placeholder="Your Email" value={form.email} onChange={handleChange}
-                className="bg-gray-800 p-3 rounded text-white" required />
-              <textarea name="message" placeholder="Tell me about your project..." value={form.message} onChange={handleChange}
-                className="bg-gray-800 p-3 rounded text-white h-32" required /> {/* Added h-32 for textarea height */}
-              <button type="submit" className="bg-white text-black p-3 rounded hover:bg-gray-300 transition-colors">Send Request</button>
-            </form>
-          )}
-        </section>
-
-        <Footer /> {/* Use Footer component here */}
-        {/* Removed inline footer:
-        <footer className="text-center mt-12 py-6 text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} Michael Andrade. All rights reserved.
-        </footer>
-        */}
-      </div>
-    </div>
+        <div className="project-grid">
+          {projects.map((project, index) => (
+            <Link
+              to={`/project/${project.slug}`}
+              key={project.id}
+              className={`project-grid-item ${project.size || ''} animate-on-scroll`}
+              style={{ '--item-index': index }}
+            >
+              <div className="project-media-wrapper">
+                {project.videoSrc ? (
+                  <video
+                    className="project-media"
+                    src={project.videoSrc}
+                    poster={project.thumbnailSrc}
+                    muted
+                    loop
+                    playsInline
+                    onMouseEnter={e => e.target.play()}
+                    onMouseLeave={e => e.target.pause()}
+                  />
+                ) : (
+                  <img
+                    className="project-media"
+                    src={project.thumbnailSrc}
+                    alt={project.title}
+                    loading="lazy"
+                  />
+                )}
+              </div>
+              <div className="project-overlay">
+                <div className="project-info">
+                  <span className="project-number">0{project.id}</span>
+                  <h3 className="project-title">{project.title}</h3>
+                  <span className="project-category">{project.category}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+    </>
   );
-}
+};
+
+export default HomePage;
